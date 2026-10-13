@@ -1,1 +1,323 @@
-<h1>Easy Brain Rocket Game</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devine Gamers | Elite Gaming Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0f',
+                            panel: '#12121a',
+                            neon: '#8b5cf6', // Violet outline aesthetic
+                            neonHover: '#a78bfa',
+                            accent: '#2dd4bf', // Teal outline aesthetic
+                        }
+                    },
+                    fontFamily: {
+                        gaming: ['Orbitron', 'sans-serif'],
+                        body: ['Rajdhani', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-gaming {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .neon-text {
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+        .outline-button {
+            transition: all 0.3s ease;
+            border: 1px solid #8b5cf6;
+            background: transparent;
+            color: #8b5cf6;
+        }
+        .outline-button:hover {
+            background: rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+        .outline-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .outline-card:hover {
+            border-color: #2dd4bf;
+            box-shadow: 0 5px 20px rgba(45, 212, 191, 0.15);
+            transform: translateY(-2px);
+        }
+        /* Minimalist grid background */
+        .bg-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #8b5cf6; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-brand-dark bg-grid">
+
+    <header class="fixed w-full top-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Minimalist Vector Logo -->
+            <a href="#" class="text-xl md:text-2xl font-gaming font-bold text-white tracking-widest flex items-center gap-3">
+                <svg class="w-8 h-8 text-brand-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12l-9-9-9 9 9 9 9-9z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18" />
+                </svg>
+                DEVINE <span class="text-brand-accent font-light">GAMERS</span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-10">
+                <a href="#home" class="text-gray-400 hover:text-brand-neon transition-colors font-medium text-sm uppercase tracking-widest">Home</a>
+                <a href="#game" class="text-gray-400 hover:text-brand-neon transition-colors font-medium text-sm uppercase tracking-widest">The Game</a>
+                <a href="#community" class="text-gray-400 hover:text-brand-neon transition-colors font-medium text-sm uppercase tracking-widest">Community</a>
+            </nav>
+            
+            <div class="hidden md:block">
+                <button class="outline-button font-gaming px-6 py-2 text-xs uppercase tracking-widest">
+                    Player Login
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-panel border-b border-white/10">
+            <div class="px-6 pt-4 pb-8 space-y-4 text-center">
+                <a href="#home" class="block text-gray-400 hover:text-brand-neon py-2 text-lg tracking-widest uppercase">Home</a>
+                <a href="#game" class="block text-gray-400 hover:text-brand-neon py-2 text-lg tracking-widest uppercase">The Game</a>
+                <a href="#community" class="block text-gray-400 hover:text-brand-neon py-2 text-lg tracking-widest uppercase">Community</a>
+                <button class="mt-4 w-full outline-button font-gaming py-3 text-sm uppercase tracking-widest">
+                    Player Login
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-screen flex items-center">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-[1px] bg-brand-accent"></div>
+                    <span class="text-brand-accent text-xs font-bold tracking-[0.2em] uppercase">Status: Online</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tighter leading-none">
+                    Reach <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon to-brand-accent neon-text">Apex Tier</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-xl font-light leading-relaxed">
+                    Devine Gamers is the premier destination for logic enthusiasts. Master procedural puzzles, refine your strategies, and climb the global leaderboards in our exclusive platform.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#game" class="outline-button font-gaming px-8 py-4 text-sm uppercase tracking-widest text-center flex items-center justify-center gap-3">
+                        Enter Grid
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Minimalist vector decoration -->
+        <div class="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:block opacity-20 pointer-events-none">
+            <svg width="400" height="400" viewBox="0 0 100 100" fill="none" stroke="url(#gradient)" stroke-width="0.5">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#8b5cf6" />
+                        <stop offset="100%" stop-color="#2dd4bf" />
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="40" stroke-dasharray="2 4"/>
+                <circle cx="50" cy="50" r="30" stroke-dasharray="1 6"/>
+                <path d="M50 10 L50 90 M10 50 L90 50" stroke-dasharray="4 4" />
+                <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" />
+            </svg>
+        </div>
+    </section>
+
+    <section id="game" class="py-24 bg-brand-panel relative border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-2xl md:text-4xl font-light font-gaming uppercase tracking-widest">Active <span class="text-brand-accent font-bold">Project</span></h2>
+                <div class="w-16 h-[2px] bg-brand-neon mt-6"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <!-- Flat Vector Game Art -->
+                <div class="w-full lg:w-1/2 outline-card bg-brand-dark p-8 md:p-12 aspect-square md:aspect-video lg:aspect-square flex items-center justify-center relative overflow-hidden group">
+                    <!-- Procedural Grid Background effect -->
+                    <div class="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(45,212,191,1)_1px,transparent_1px),linear-gradient(90deg,rgba(45,212,191,1)_1px,transparent_1px)] bg-[size:20px_20px] transition-transform duration-1000 group-hover:scale-110"></div>
+                    
+                    <!-- Main Game SVG Illustration (Rocket & Snake Theme) -->
+                    <svg class="w-full max-w-md relative z-10 drop-shadow-[0_0_15px_rgba(45,212,191,0.3)]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- Maze / Level boundaries -->
+                        <path d="M20 20 h160 v160 h-160 z" stroke="#4b5563" stroke-width="1" stroke-dasharray="4 4" />
+                        <path d="M60 20 v60 h40 v-40 h40 v80 h-40 v40 h-40" stroke="#8b5cf6" stroke-linecap="square" />
+                        
+                        <!-- Snake Path Line -->
+                        <path d="M30 170 h30 v-40 h40 v-40 h40 v-40 h30" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        
+                        <!-- Rocket Icon (Player) -->
+                        <g transform="translate(160, 40) rotate(45)">
+                            <path d="M-10 10 L0 -15 L10 10 Z" fill="#0a0a0f" stroke="#2dd4bf" stroke-width="2"/>
+                            <path d="M-5 10 L-5 15 M5 10 L5 15" stroke="#f43f5e" />
+                            <circle cx="0" cy="2" r="3" stroke="#8b5cf6" fill="#0a0a0f"/>
+                        </g>
+                        
+                        <!-- Target/Exit Node -->
+                        <circle cx="30" cy="170" r="8" stroke="#8b5cf6" stroke-dasharray="2 2" />
+                        <circle cx="30" cy="170" r="3" fill="#8b5cf6" stroke="none" />
+                    </svg>
+                </div>
+
+                <!-- Game Details -->
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <div>
+                        <span class="text-brand-neon text-xs font-bold tracking-[0.2em] uppercase border border-brand-neon/30 px-3 py-1 bg-brand-neon/5">Version 2.4.1</span>
+                        <h3 class="text-4xl md:text-5xl font-gaming font-bold mt-6 mb-4">Aero<span class="text-brand-accent">Snake</span> Protocol</h3>
+                        <p class="text-gray-400 text-lg leading-relaxed font-light">
+                            Experience a pure, minimalist 2D puzzle environment. Navigate through infinitely generated procedural levels that test your spatial awareness. 
+                        </p>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 p-1 border border-white/20 rounded-sm text-brand-accent">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium text-lg tracking-wide uppercase">Kinetic Mechanics</h4>
+                                <p class="text-gray-500 text-sm mt-1">Master the dual-movement system: combine rocket propulsion physics with classic grid-based snake maneuvering.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 p-1 border border-white/20 rounded-sm text-brand-neon">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium text-lg tracking-wide uppercase">Procedural Generation</h4>
+                                <p class="text-gray-500 text-sm mt-1">No two grids are the same. Seed-based level architecture ensures infinite replayability and unique daily challenges.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="pt-6 border-t border-white/5">
+                        <button class="bg-white text-brand-dark hover:bg-gray-200 font-gaming px-8 py-3 text-sm uppercase tracking-widest font-bold transition-colors">
+                            Play Now - WebGL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="community" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto outline-card bg-brand-panel/50 backdrop-blur-sm p-10 md:p-16 text-center relative overflow-hidden">
+                <!-- Abstract corner accents -->
+                <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-brand-neon"></div>
+                <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-brand-accent"></div>
+
+                <div class="inline-flex items-center justify-center w-16 h-16 border border-white/20 mb-8 rounded-sm">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl font-gaming font-light mb-6 uppercase tracking-widest">Global <span class="text-white font-bold">Network</span></h2>
+                <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto font-light">
+                    Join an active network of algorithm optimizers and speedrunners. Share your best procedural seed runs, discover new movement tech, and track your global ranking.
+                </p>
+                <button class="outline-button font-gaming px-10 py-4 text-sm uppercase tracking-widest flex items-center justify-center gap-3 mx-auto">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    Initialize Comms Link
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark py-12 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
+                <div class="text-center md:text-left">
+                    <a href="#" class="text-xl font-gaming font-bold text-white tracking-widest flex items-center gap-2 justify-center md:justify-start">
+                        <svg class="w-6 h-6 text-brand-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12l-9-9-9 9 9 9 9-9z" />
+                        </svg>
+                        DEVINE GAMERS
+                    </a>
+                    <p class="text-gray-600 mt-2 text-sm uppercase tracking-wider">Logic &bull; Speed &bull; Precision</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <!-- Outline Social Icons -->
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors border border-gray-800 hover:border-white p-2 rounded-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors border border-gray-800 hover:border-white p-2 rounded-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors border border-gray-800 hover:border-white p-2 rounded-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center md:text-left flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-6 text-xs text-gray-600 uppercase tracking-widest font-light">
+                <p>&copy; 2026 Devine Gamers Network.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-gray-300">Terms</a>
+                    <a href="#" class="hover:text-gray-300">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add('hidden'); // Close menu on click
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
